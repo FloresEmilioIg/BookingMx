@@ -1,0 +1,105 @@
+-------------------------------------------------------------------------------
+Test set: com.bookingmx.reservations.service.ReservationServiceTest
+-------------------------------------------------------------------------------
+Tests run: 13, Failures: 6, Errors: 2, Skipped: 0, Time elapsed: 2.660 s <<< FAILURE! -- in com.bookingmx.reservations.service.ReservationServiceTest
+com.bookingmx.reservations.service.ReservationServiceTest.list_ShouldReturnEmptyListWhenNoReservations -- Time elapsed: 0.108 s <<< FAILURE!
+Wanted but not invoked:
+mockRepo.findAll();
+-> at com.bookingmx.reservations.repo.ReservationRepository.findAll(ReservationRepository.java:13)
+Actually, there were zero interactions with this mock.
+
+	at com.bookingmx.reservations.repo.ReservationRepository.findAll(ReservationRepository.java:13)
+	at com.bookingmx.reservations.service.ReservationServiceTest.list_ShouldReturnEmptyListWhenNoReservations(ReservationServiceTest.java:90)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+com.bookingmx.reservations.service.ReservationServiceTest.create_ShouldReturnNewReservation -- Time elapsed: 0.024 s <<< FAILURE!
+Wanted but not invoked:
+mockRepo.save(
+    <any com.bookingmx.reservations.model.Reservation>
+);
+-> at com.bookingmx.reservations.repo.ReservationRepository.save(ReservationRepository.java:21)
+Actually, there were zero interactions with this mock.
+
+	at com.bookingmx.reservations.repo.ReservationRepository.save(ReservationRepository.java:21)
+	at com.bookingmx.reservations.service.ReservationServiceTest.create_ShouldReturnNewReservation(ReservationServiceTest.java:107)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+com.bookingmx.reservations.service.ReservationServiceTest.update_ShouldThrowBadRequestException_WhenReservationIsCanceled -- Time elapsed: 0.017 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Cannot update a canceled reservation ==> Unexpected exception type thrown, expected: <com.bookingmx.reservations.exception.BadRequestException> but was: <com.bookingmx.reservations.exception.NotFoundException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:39)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3131)
+	at com.bookingmx.reservations.service.ReservationServiceTest.update_ShouldThrowBadRequestException_WhenReservationIsCanceled(ReservationServiceTest.java:198)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+Caused by: com.bookingmx.reservations.exception.NotFoundException: Reservation not found
+	at com.bookingmx.reservations.service.ReservationService.lambda$update$0(ReservationService.java:30)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.bookingmx.reservations.service.ReservationService.update(ReservationService.java:30)
+	at com.bookingmx.reservations.service.ReservationServiceTest.lambda$update_ShouldThrowBadRequestException_WhenReservationIsCanceled$2(ReservationServiceTest.java:198)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 6 more
+
+com.bookingmx.reservations.service.ReservationServiceTest.list_ShouldReturnAllReservations -- Time elapsed: 0.006 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <1> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at com.bookingmx.reservations.service.ReservationServiceTest.list_ShouldReturnAllReservations(ReservationServiceTest.java:75)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+com.bookingmx.reservations.service.ReservationServiceTest.cancel_ShouldChangeStatusToCanceled -- Time elapsed: 0.006 s <<< ERROR!
+com.bookingmx.reservations.exception.NotFoundException: Reservation not found
+	at com.bookingmx.reservations.service.ReservationService.lambda$cancel$1(ReservationService.java:41)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.bookingmx.reservations.service.ReservationService.cancel(ReservationService.java:41)
+	at com.bookingmx.reservations.service.ReservationServiceTest.cancel_ShouldChangeStatusToCanceled(ReservationServiceTest.java:151)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+com.bookingmx.reservations.service.ReservationServiceTest.update_ShouldReturnUpdatedReservation -- Time elapsed: 0.005 s <<< ERROR!
+com.bookingmx.reservations.exception.NotFoundException: Reservation not found
+	at com.bookingmx.reservations.service.ReservationService.lambda$update$0(ReservationService.java:30)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.bookingmx.reservations.service.ReservationService.update(ReservationService.java:30)
+	at com.bookingmx.reservations.service.ReservationServiceTest.update_ShouldReturnUpdatedReservation(ReservationServiceTest.java:128)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+com.bookingmx.reservations.service.ReservationServiceTest.update_ShouldThrowNotFoundException_WhenIdDoesNotExist -- Time elapsed: 0.004 s <<< FAILURE!
+Wanted but not invoked:
+mockRepo.findById(1L);
+-> at com.bookingmx.reservations.repo.ReservationRepository.findById(ReservationRepository.java:17)
+Actually, there were zero interactions with this mock.
+
+	at com.bookingmx.reservations.repo.ReservationRepository.findById(ReservationRepository.java:17)
+	at com.bookingmx.reservations.service.ReservationServiceTest.update_ShouldThrowNotFoundException_WhenIdDoesNotExist(ReservationServiceTest.java:170)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+com.bookingmx.reservations.service.ReservationServiceTest.cancel_ShouldThrowNotFoundException_WhenIdDoesNotExist -- Time elapsed: 0.006 s <<< FAILURE!
+Wanted but not invoked:
+mockRepo.findById(1L);
+-> at com.bookingmx.reservations.repo.ReservationRepository.findById(ReservationRepository.java:17)
+Actually, there were zero interactions with this mock.
+
+	at com.bookingmx.reservations.repo.ReservationRepository.findById(ReservationRepository.java:17)
+	at com.bookingmx.reservations.service.ReservationServiceTest.cancel_ShouldThrowNotFoundException_WhenIdDoesNotExist(ReservationServiceTest.java:181)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
