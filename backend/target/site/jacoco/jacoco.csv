@@ -1,0 +1,12 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+BookingMx Backend,com.bookingmx.reservations.repo,ReservationRepository,52,0,2,0,10,0,6,0,5,0
+BookingMx Backend,com.bookingmx.reservations.controller,ReservationController,53,0,0,0,11,0,6,0,6,0
+BookingMx Backend,com.bookingmx.reservations.dto,ReservationRequest,0,31,0,0,0,9,0,9,0,9
+BookingMx Backend,com.bookingmx.reservations.dto,ReservationResponse,39,0,0,0,10,0,7,0,7,0
+BookingMx Backend,com.bookingmx.reservations.model,ReservationStatus,0,15,0,0,0,2,0,1,0,1
+BookingMx Backend,com.bookingmx.reservations.model,Reservation,34,74,4,2,6,22,5,15,3,14
+BookingMx Backend,com.bookingmx.reservations.exception,NotFoundException,0,4,0,0,0,1,0,1,0,1
+BookingMx Backend,com.bookingmx.reservations.exception,ApiExceptionHandler,39,0,0,0,5,0,5,0,5,0
+BookingMx Backend,com.bookingmx.reservations.exception,BadRequestException,0,4,0,0,0,1,0,1,0,1
+BookingMx Backend,com.bookingmx.reservations.service,ReservationService,5,135,2,10,0,23,2,12,0,8
+BookingMx Backend,com.bookingmx.reservations,BookingMxApplication,8,0,0,0,3,0,2,0,2,0

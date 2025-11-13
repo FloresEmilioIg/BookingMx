@@ -14,7 +14,11 @@ import java.util.List;
 
 @Service
 public class ReservationService {
-    private final ReservationRepository repo = new ReservationRepository();
+    private final ReservationRepository repo;
+
+    public ReservationService(ReservationRepository repo) {
+        this.repo = repo;
+    }
 
     public List<Reservation> list() {
         return repo.findAll();

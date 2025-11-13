@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ApiExceptionHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BookingMx Backend</a> &gt; <a href="index.source.html" class="el_package">com.bookingmx.reservations.exception</a> &gt; <span class="el_source">ApiExceptionHandler.java</span></div><h1>ApiExceptionHandler.java</h1><pre class="source lang-java linenums">package com.bookingmx.reservations.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.Instant;
+import java.util.Map;
+
+@RestControllerAdvice
+<span class="nc" id="L11">public class ApiExceptionHandler {</span>
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity&lt;?&gt; badRequest(BadRequestException ex) {
+<span class="nc" id="L15">        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorBody(ex.getMessage(), 400));</span>
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity&lt;?&gt; notFound(NotFoundException ex) {
+<span class="nc" id="L20">        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorBody(ex.getMessage(), 404));</span>
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity&lt;?&gt; generic(Exception ex) {
+<span class="nc" id="L25">        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorBody(&quot;Unexpected error&quot;, 500));</span>
+    }
+
+    private Map&lt;String, Object&gt; errorBody(String message, int status) {
+<span class="nc" id="L29">        return Map.of(&quot;timestamp&quot;, Instant.now().toString(), &quot;status&quot;, status, &quot;message&quot;, message);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

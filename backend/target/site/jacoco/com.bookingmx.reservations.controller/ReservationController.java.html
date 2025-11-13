@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReservationController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BookingMx Backend</a> &gt; <a href="index.source.html" class="el_package">com.bookingmx.reservations.controller</a> &gt; <span class="el_source">ReservationController.java</span></div><h1>ReservationController.java</h1><pre class="source lang-java linenums">package com.bookingmx.reservations.controller;
+
+import com.bookingmx.reservations.dto.ReservationRequest;
+import com.bookingmx.reservations.dto.ReservationResponse;
+import com.bookingmx.reservations.model.Reservation;
+import com.bookingmx.reservations.service.ReservationService;
+
+import jakarta.validation.Valid;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@CrossOrigin(origins = {&quot;http://localhost:5173&quot;, &quot;http://127.0.0.1:5173&quot;, &quot;*&quot;})
+@RequestMapping(value = &quot;/api/reservations&quot;, produces = MediaType.APPLICATION_JSON_VALUE)
+public class ReservationController {
+
+    private final ReservationService service;
+
+<span class="nc" id="L21">    public ReservationController(ReservationService service) {</span>
+<span class="nc" id="L22">        this.service = service;</span>
+<span class="nc" id="L23">    }</span>
+
+    @GetMapping
+    public List&lt;ReservationResponse&gt; list() {
+<span class="nc" id="L27">        return service.list().stream()</span>
+<span class="nc" id="L28">                .map(this::toResponse)</span>
+<span class="nc" id="L29">                .toList();</span>
+    }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ReservationResponse create(@Valid @RequestBody ReservationRequest req) {
+<span class="nc" id="L34">        return toResponse(service.create(req));</span>
+    }
+
+    @PutMapping(value = &quot;/{id}&quot;, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ReservationResponse update(@PathVariable(&quot;id&quot;) Long id, @Valid @RequestBody ReservationRequest req) {
+<span class="nc" id="L39">        return toResponse(service.update(id, req));</span>
+    }
+
+    @DeleteMapping(&quot;/{id}&quot;)
+    public ReservationResponse cancel(@PathVariable(&quot;id&quot;) Long id) {
+<span class="nc" id="L44">        return toResponse(service.cancel(id));</span>
+    }
+
+    private ReservationResponse toResponse(Reservation r) {
+<span class="nc" id="L48">        return new ReservationResponse(</span>
+<span class="nc" id="L49">                r.getId(), r.getGuestName(), r.getHotelName(), r.getCheckIn(), r.getCheckOut(), r.getStatus()</span>
+        );
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

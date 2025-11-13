@@ -4,7 +4,9 @@ import com.bookingmx.reservations.model.Reservation;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ReservationRepository {
     private final Map<Long, Reservation> store = new ConcurrentHashMap<>();
     private final AtomicLong seq = new AtomicLong(1L);
